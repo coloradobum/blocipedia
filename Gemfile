@@ -45,6 +45,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rake' #add this for travis-ci
   gem "capybara"
 end
 
