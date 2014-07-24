@@ -38,3 +38,15 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'slim-rails'
+
+group :development, :test do
+  gem "rspec-rails"
+end
+
+group :test do
+  gem 'rake' #add this for travis-ci
+  gem "capybara"
+end
+
+gem "codeclimate-test-reporter", group: :test, require: nil
