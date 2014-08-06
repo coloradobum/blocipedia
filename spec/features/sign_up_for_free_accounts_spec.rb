@@ -9,12 +9,12 @@ feature 'Sign up for free account ',  %q{
   scenario 'Sign up for an account' do
     visit root_path
     click_on 'Sign up'
-    fill_in 'Username', with: 'joeblow'
+    #fill_in 'Username', with: 'joeblow'
     fill_in 'Email', with: 'joe@blow.com'
     fill_in 'Password', with: 'joespassword'
     fill_in 'Password confirmation', with: 'joespassword'
     click_button 'Sign up'
-    expect(page).to have_content('Welcome joeblow')
+    expect(page).to have_content('Welcome! You have signed up successfully.')
   end
 
 end
