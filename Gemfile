@@ -39,9 +39,13 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'slim-rails'
+gem 'devise'
 
 group :development, :test do
-  gem "rspec-rails"
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'pry'
+  gem 'launchy'
 end
 
 group :test do
