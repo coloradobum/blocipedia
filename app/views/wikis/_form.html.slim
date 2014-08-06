@@ -1,0 +1,15 @@
+= form_for @wiki do |f|
+  - if @wiki.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@wiki.errors.count, "error")} prohibited this wiki from being saved:"
+      ul
+        - @wiki.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :body
+    = f.text_area :body
+  .actions = f.submit 'Save'

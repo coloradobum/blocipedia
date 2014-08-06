@@ -14,10 +14,11 @@ feature 'add public wikis', %q{
     fill_in 'Email', with: @user.email 
     fill_in 'Password', with: @user.password
     click_button 'Sign in'
+    visit 'wikis'
 
-    click_on 'New wiki'
-    fill_in 'wiki name', with: 'My first Wiki'
-    click_button 'Create'
+    click_on 'New Wiki'
+    fill_in 'Title', with: 'My first Wiki'
+    click_button 'Save'
 
     expect(page).to have_content('My first Wiki')
 

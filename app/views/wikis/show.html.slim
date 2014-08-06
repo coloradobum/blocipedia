@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @wiki.title
+p
+  strong Body:
+  = @wiki.body
+
+= link_to 'Edit', edit_wiki_path(@wiki)
+'|
+= link_to 'Back', wikis_path
