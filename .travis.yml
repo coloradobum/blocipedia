@@ -1,6 +1,10 @@
 language: ruby
 cache: bundler
 rvm: '2.1.2'
+addons:
+  code_climate:
+    repo_token:
+      secure: "M8RXQvUTs4RIYKOtLKSQ5NE7Bk/Pp9yUMXS+rWHiqqUinDmmsLV7j8kyJkFaRtVDBoqTVctsoynqdHovReOPJBRxktb8mQMI6h5XfDOgD8LDJu67pgIUCiQHRG6YhBos1PR25+P+/+eFnIfq0tRxelg9jv39z59H2bs1kQI/3DA="
 
 before_script:
   - bundle exec rake db:create:all
