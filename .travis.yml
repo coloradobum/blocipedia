@@ -12,3 +12,4 @@ before_script:
 
 script:
   - bundle exec rspec --format progress
+  - bundle exec rake
