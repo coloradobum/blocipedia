@@ -22,7 +22,9 @@ feature 'add public wikis', %q{
     fill_in 'Title', with: 'My first Wiki'
     click_button 'Save'
 
-    expect(page).to have_content('My first Wiki')
+    click_on 'Sign out'
+    visit 'wikis'
 
+    expect(page).to have_content('My first Wiki')
   end
 end
