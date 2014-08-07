@@ -40,6 +40,7 @@ gem 'spring',        group: :development
 
 gem 'slim-rails'
 gem 'devise'
+gem 'figaro'
 
 group :development, :test do
   gem 'rspec-rails'
