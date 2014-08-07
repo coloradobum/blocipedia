@@ -8,6 +8,8 @@ feature 'add public wikis', %q{
 
   scenario 'create a public wiki' do
     @user = FactoryGirl.create(:user)
+    @user.confirmed_at = Time.now
+    @user.save
 
     visit root_path
     click_on 'Sign in'
