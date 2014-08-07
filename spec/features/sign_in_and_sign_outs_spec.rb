@@ -8,6 +8,8 @@ feature 'Sign in and sign out', %q{
   
   scenario 'Sign in succesfully' do
     @user = FactoryGirl.create(:user)
+    @user.confirmed_at = Time.now
+    @user.save
     
     visit root_path
     click_on 'Sign in'
@@ -20,6 +22,8 @@ feature 'Sign in and sign out', %q{
   
   scenario 'Sign out succesfully' do
     @user = FactoryGirl.create(:user)
+    @user.confirmed_at = Time.now
+    @user.save
     
     visit root_path
     click_on 'Sign in'
