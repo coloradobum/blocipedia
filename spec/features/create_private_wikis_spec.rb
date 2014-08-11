@@ -21,7 +21,6 @@ feature 'add public wikis', %q{
 end
 
   scenario 'create private wiki' do
-    pending
     user = FactoryGirl.create(:user)
     user.confirmed_at = Time.now
     user.save
