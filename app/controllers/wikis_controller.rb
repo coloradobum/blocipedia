@@ -6,6 +6,7 @@ class WikisController < ApplicationController
   # GET /wikis.json
   def index
     @wikis = Wiki.public_wikis
+    @private_wikis = Wiki.private_wikis
   end
 
   # GET /wikis/1

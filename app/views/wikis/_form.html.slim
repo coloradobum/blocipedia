@@ -13,6 +13,8 @@
     = f.label :body
     = f.text_area :body
   .field
-    = f.label 'Make wiki private'
-    = f.check_box :private
+    = f.label 'Make wiki private' if current_user.is_premium_user?
+    = f.check_box :private if current_user.is_premium_user? 
+    = link_to 'Upgrade to premium user to create private wikis', edit_user_registration_path if current_user.is_premium_user == false
   .actions = f.submit 'Save'
+ 

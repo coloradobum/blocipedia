@@ -23,6 +23,7 @@ end
   scenario 'create private wiki' do
     user = FactoryGirl.create(:user)
     user.confirmed_at = Time.now
+    user.is_premium_user = true
     user.save
 
     visit root_path
