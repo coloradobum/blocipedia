@@ -34,13 +34,12 @@ end
     click_on 'New Wiki'
     fill_in 'Title', with: "My Shiny Private Wiki"
     fill_in 'Body', with: "the best wiki ever"
-    check 'Make wiki private'
+    check 'wiki_private'
     click_on 'Save'
 
     click_on 'Sign out'
 
     visit wikis_path
-
-    expect(page).to not_have_content("My Shiny Private Wiki")
+    expect(page).to_not have_content("My Shiny Private Wiki")
   end
 end
