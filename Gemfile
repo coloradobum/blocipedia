@@ -49,6 +49,10 @@ group :development, :test do
   gem 'launchy'
 end
 
+group :development do
+  gem 'gem-ctags'
+end
+
 group :test do
   gem 'rake' #add this for travis-ci
   gem "capybara"

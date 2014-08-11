@@ -1,4 +1,4 @@
-h1 Listing wikis
+h1 Listing Public wikis
 
 table
   thead
@@ -19,5 +19,30 @@ table
         td = link_to 'Destroy', wiki, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
+br
+- if user_signed_in?
+  h2 Listing Private wikis
+
+  table
+    thead
+      tr
+        th Title
+        th Body
+        th
+        th
+        th
+
+    tbody
+      - @private_wikis.each do |wiki|
+        tr
+          td = wiki.title
+          td = wiki.body
+          td = link_to 'Show', wiki
+          td = link_to 'Edit', edit_wiki_path(wiki)
+          td = link_to 'Destroy', wiki, data: {:confirm => 'Are you sure?'}, :method => :delete
+br
+br
 
 = link_to 'New Wiki', new_wiki_path
+br
+= link_to 'Upgrade to premium account', edit_user_registration_path
