@@ -31,7 +31,7 @@ end
     fill_in 'Password', with: user.password
     click_button 'Sign in'
 
-    click_on 'New wiki'
+    click_on 'New Wiki'
     fill_in 'Title', with: "My Shiny Private Wiki"
     fill_in 'Body', with: "the best wiki ever"
     check 'Make wiki private'

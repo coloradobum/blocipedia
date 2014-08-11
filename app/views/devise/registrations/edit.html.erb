@@ -18,7 +18,11 @@
 
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %></div>
-
+  <br />
+  <div><%= f.label "Upgrade to Premium User" %>
+    <%= f.check_box :is_premium_user %>
+  </div>
+  <br />
   <div><%= f.submit "Update" %></div>
 <% end %>
 
