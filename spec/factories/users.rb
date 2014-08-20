@@ -10,8 +10,11 @@ FactoryGirl.define do
       end
     end
 
-    trait :premium do
+    trait :confirmed2 do
       confirmed
+    end
+
+    trait :premium do
       is_premium_user true
     end
   end

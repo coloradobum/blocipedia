@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+User.destroy_all
+Wiki.destroy_all
+
+User.create!(email: 'joe1@b.com', password: 'password123', confirmed_at: Time.now)
+User.create!(email: 'joe2@b.com', password: 'password123', confirmed_at: Time.now)
+User.create!(email: 'joe3@b.com', password: 'password123', confirmed_at: Time.now)
+ 
+#TODO Add dynamic wiki owners(user_id) so dropping db before each seed isn't necc.
+Wiki.create!(title: 'wiki 1', body: 'lorem ipsume, latty dotty.', user_id: 1, private: true)
+Wiki.create!(title: 'wiki 2', body: 'lorem ipsume, latty dotty.', user_id: 2)
+Wiki.create!(title: 'wiki 3', body: 'lorem ipsume, latty dotty.', user_id: 3)
+Wiki.create!(title: 'wiki 4', body: 'lorem ipsume, latty dotty.', user_id: 1)
+Wiki.create!(title: 'wiki 5', body: 'lorem ipsume, latty dotty.', user_id: 2)
+
+p "Created #{User.count} users and #{Wiki.count} wikis."
