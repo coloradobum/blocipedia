@@ -1,4 +1,4 @@
-h1 Listing Public wikis
+h1 Public wikis
 
 table
   thead
@@ -21,8 +21,7 @@ table
 br
 br
 - if user_signed_in?
-  h2 Listing Private wikis
-
+  h2 My Private wikis
   table
     thead
       tr
@@ -33,15 +32,15 @@ br
         th
 
     tbody
-      - @private_wikis.each do |wiki|
+      - @private_wikis.each do |wiki| 
         tr
           td = wiki.title
           td = wiki.body
           td = link_to 'Show', wiki
           td = link_to 'Edit', edit_wiki_path(wiki)
           td = link_to 'Destroy', wiki, data: {:confirm => 'Are you sure?'}, :method => :delete
-br
-br
+  br
+  br
 
 = link_to 'New Wiki', new_wiki_path
 br

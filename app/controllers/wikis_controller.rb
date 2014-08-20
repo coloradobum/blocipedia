@@ -6,7 +6,7 @@ class WikisController < ApplicationController
   # GET /wikis.json
   def index
     @wikis = Wiki.public_wikis
-    @private_wikis = Wiki.private_wikis
+    @private_wikis = Wiki.private_wikis(current_user) if signed_in?
   end
 
   # GET /wikis/1
@@ -27,7 +27,7 @@ class WikisController < ApplicationController
   # POST /wikis.json
   def create
     @wiki = Wiki.new(wiki_params)
-
+    @wiki.user_id = current_user.id
     respond_to do |format|
       if @wiki.save
         format.html { redirect_to @wiki, notice: 'Wiki was successfully created.' }
@@ -71,6 +71,6 @@ class WikisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wiki_params
-      params.require(:wiki).permit(:title, :body, :private)
+      params.require(:wiki).permit(:title, :body, :private, :user_id)
     end
 end
