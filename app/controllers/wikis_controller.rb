@@ -6,7 +6,7 @@ class WikisController < ApplicationController
   # GET /wikis.json
   def index
     @wikis = Wiki.public_wikis
-    @private_wikis = Wiki.private_wikis(current_user) if signed_in?
+    @private_wikis = Wiki.private_wikis
   end
 
   # GET /wikis/1
@@ -71,6 +71,6 @@ class WikisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wiki_params
-      params.require(:wiki).permit(:title, :body, :private, :user_id)
+      params.require(:wiki).permit(:title, :body, :private, :user_ids[])
     end
 end
