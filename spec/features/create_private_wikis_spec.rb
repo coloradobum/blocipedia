@@ -6,24 +6,21 @@ require 'rails_helper'
 
 feature 'add private wikis' do
  
-  scenario 'create private wiki' do
-    user = FactoryGirl.create(:user)
-    user.confirmed_at = Time.now
-    user.is_premium_user = true
-    user.save
+  scenario 'create a private wiki' do
+    user = FactoryGirl.create(:user, :premium)
 
-    visit root_path
-    click_on 'Sign in'
-    fill_in 'Email', with: user.email 
-    fill_in 'Password', with: user.password
-    click_button 'Sign in'
+    sign_in_with(user.email, user.password)
+    create_private_wiki('My private wiki', 'not for your eyes.')
 
-    click_on 'New Wiki'
-    fill_in 'Title', with: "My Shiny Private Wiki"
-    fill_in 'Body', with: "the best wiki ever"
-    check 'wiki_private'
-    click_on 'Save'
+    visit wikis_path
+    expect(page).to have_content('My private wiki')
+  end
 
+  scenario 'non-logged in users cannot see private repos' do
+    user = FactoryGirl.create(:user, :premium)
+
+    sign_in_with(user.email, user.password)
+    create_private_wiki('My private wiki', 'not for your eyes.')
     click_on 'Sign out'
 
     visit wikis_path
