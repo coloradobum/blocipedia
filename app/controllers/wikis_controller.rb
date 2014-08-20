@@ -6,7 +6,7 @@ class WikisController < ApplicationController
   # GET /wikis.json
   def index
     @wikis = Wiki.public_wikis
-    @private_wikis = Wiki.private_wikis
+    @private_wikis = Wiki.private_wikis(current_user) if signed_in?
   end
 
   # GET /wikis/1
