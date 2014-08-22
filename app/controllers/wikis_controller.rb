@@ -5,8 +5,17 @@ class WikisController < ApplicationController
   # GET /wikis
   # GET /wikis.json
   def index
-    @wikis = Wiki.public_wikis
-    @private_wikis = Wiki.private_wikis(current_user) if signed_in?
+    @public_wikis = Wiki.public_wikis
+    @private_wikis = Wiki.private_wikis.owned_wikis(current_user)
+    #@private_wikis = Wiki.private_wikis
+
+    collaboration_wikis_list = current_user.collaborations.pluck(:wiki_id)
+    @collaboration_wikis_list = collaboration_wikis_list
+
+    @collaboration_wikis = Wiki.jeff(collaboration_wikis_list)
+    #collaboration_wikis_id_list.each do |wiki_id|
+    #  p Wiki.collaboration_wikis(wiki_id)
+    #end
   end
 
   # GET /wikis/1
