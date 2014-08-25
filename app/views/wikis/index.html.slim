@@ -46,13 +46,21 @@ br
   br
   br
 
-= p @collaboration_wikis_list
-
 - if user_signed_in?
   h2 Wikis shared with me
-
-= @collaboration_wikis.each do |wiki_name|
-  = wiki_name
+  table
+    thead
+      tr
+        th Wiki Title
+        th Wiki Body 
+        th Wiki Owner
+    tbody
+      - @collaboration_wikis.each do |wiki_name|
+        tr
+          td = wiki_name.title
+          td = wiki_name.body
+          td = wiki_name.user_id
+          td = link_to 'Show', wiki_name
 <br/>
 <br/>
 

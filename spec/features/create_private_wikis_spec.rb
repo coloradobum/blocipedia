@@ -10,7 +10,6 @@ feature 'Add private wikis' do
     user = FactoryGirl.create(:user, :premium)
 
     sign_in_with(user.email, user.password)
-    save_and_open_page
     create_private_wiki('My private wiki', 'not for your eyes.')
 
     visit wikis_path
@@ -23,7 +22,6 @@ feature 'Add private wikis' do
     sign_in_with(user.email, user.password)
     visit wikis_path
     click_link "New Wiki"
-    save_and_open_page
     expect(page).to have_content("Upgrade to premium user to create private wikis")
   end
 end
