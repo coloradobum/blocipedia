@@ -5,8 +5,10 @@ class WikisController < ApplicationController
   # GET /wikis
   # GET /wikis.json
   def index
-    @wikis = Wiki.public_wikis
-    @private_wikis = Wiki.private_wikis(current_user) if signed_in?
+    @public_wikis = Wiki.public_wikis
+    @private_wikis = Wiki.private_wikis.owned_wikis(get_current_user) if user_signed_in?
+    @collaboration_wikis = Wiki.show_wiki_details(get_list_of_wikis_being_collaborated) if user_signed_in?
+
   end
 
   # GET /wikis/1
@@ -71,6 +73,22 @@ class WikisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def wiki_params
-      params.require(:wiki).permit(:title, :body, :private, :user_id)
+      params.require(:wiki).permit(:title, :body, :private, :user_id,  user_ids: [])
+    end
+
+    def get_current_user
+      if current_user == nil
+        return nil 
+      else
+        current_user
+      end
+    end
+
+    def get_list_of_wikis_being_collaborated
+      if current_user == nil
+        return nil 
+      else
+        current_user.collaborations.pluck(:wiki_id)
+      end
     end
 end
