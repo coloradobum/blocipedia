@@ -7,7 +7,7 @@ require 'rails_helper'
 feature 'Add private wikis' do
  
   scenario 'Successfully' do
-    user = FactoryGirl.create(:user, :premium)
+    user = FactoryGirl.create(:user, :confirmed2, :premium)
 
     sign_in_with(user.email, user.password)
     create_private_wiki('My private wiki', 'not for your eyes.')
@@ -17,7 +17,7 @@ feature 'Add private wikis' do
   end
 
   scenario 'As a non-premium user' do
-    user = FactoryGirl.create(:user, :confirmed)
+    user = FactoryGirl.create(:user, :confirmed2)
 
     sign_in_with(user.email, user.password)
     visit wikis_path
