@@ -5,15 +5,17 @@ table
     tr
       th Title
       th Body
+      th Owner
       th
       th
       th
 
   tbody
-    - @wikis.each do |wiki|
+    - @public_wikis.each do |wiki|
       tr
         td = wiki.title
         td = wiki.body
+        td = wiki.user_id
         td = link_to 'Show', wiki
         td = link_to 'Edit', edit_wiki_path(wiki)
         td = link_to 'Destroy', wiki, data: {:confirm => 'Are you sure?'}, :method => :delete
@@ -27,6 +29,7 @@ br
       tr
         th Title
         th Body
+        th Owner
         th
         th
         th
@@ -36,11 +39,30 @@ br
         tr
           td = wiki.title
           td = wiki.body
+          td = wiki.user_id
           td = link_to 'Show', wiki
           td = link_to 'Edit', edit_wiki_path(wiki)
           td = link_to 'Destroy', wiki, data: {:confirm => 'Are you sure?'}, :method => :delete
   br
   br
+
+- if user_signed_in?
+  h2 Wikis shared with me
+  table
+    thead
+      tr
+        th Wiki Title
+        th Wiki Body 
+        th Wiki Owner
+    tbody
+      - @collaboration_wikis.each do |wiki_name|
+        tr
+          td = wiki_name.title
+          td = wiki_name.body
+          td = wiki_name.user_id
+          td = link_to 'Show', wiki_name
+<br/>
+<br/>
 
 = link_to 'New Wiki', new_wiki_path
 br
