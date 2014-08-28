@@ -5,7 +5,14 @@ FactoryGirl.define do
     password_confirmation "joespassword"
 
     trait :confirmed do
+      # before(:create) do |user|
+      #   user.skip_confirmation!
+      # end
       confirmed_at Time.now
+    end
+
+    trait :confirmed2 do
+      confirmed
     end
 
     trait :premium do

@@ -67,3 +67,11 @@ br
 = link_to 'New Wiki', new_wiki_path
 br
 = link_to 'Upgrade to premium account', new_charge_path
+br
+You are a collaborator on x wikis
+br
+= @number_of_wiki_collorations 
+br
+/- policy_scope(@user.wikis).each do |wiki|
+/  = link_to wiki.title, post_path(post)
+= @wikis

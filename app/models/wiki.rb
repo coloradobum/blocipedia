@@ -9,4 +9,9 @@ class Wiki < ActiveRecord::Base
   scope :public_wikis, -> { where private: false }
   scope :show_wiki_details, lambda { |wiki_id| Wiki.where(id: wiki_id) }
 
+  def self.is_wiki_collaborator(user, wiki_id)
+    wiki_list = []
+    user.collaborations.each { |wiki|  wiki_list << wiki.wiki_id }
+    wiki_list.include? wiki_id 
+  end
 end

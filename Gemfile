@@ -42,6 +42,7 @@ gem 'slim-rails'
 gem 'devise'
 gem 'figaro'
 gem 'stripe'
+gem 'pundit'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -49,6 +50,7 @@ group :development, :test do
   gem 'pry'
   gem 'launchy'
   gem 'capybara-webkit'
+  # gem 'selenium-webdriver'
   gem 'database_cleaner'
 end
 
