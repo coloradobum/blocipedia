@@ -11,5 +11,4 @@ before_script:
   - bundle exec rake db:migrate
 
 script:
-  - bundle exec rspec --format progress
-  - bundle exec rake
+  - xvfb-run -a bundle exec rspec

@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Viewing private wikis' do
 
   scenario 'As guests' do
-    user = FactoryGirl.create(:user, :confirmed2, :premium)
+    user = FactoryGirl.create(:user, :confirmed, :premium)
     #TODO: create a factory for the private wiki
 
     sign_in_with(user.email, user.password)
@@ -15,7 +15,7 @@ feature 'Viewing private wikis' do
   end
 
   scenario 'Not being the owner' do
-    wiki_owner = FactoryGirl.create(:user, :confirmed2, :premium)
+    wiki_owner = FactoryGirl.create(:user, :confirmed, :premium)
     non_wiki_owner = FactoryGirl.create(:user, :premium, email: 'nwo@g.com')
 
     sign_in_with(wiki_owner.email, wiki_owner.password)
@@ -24,12 +24,12 @@ feature 'Viewing private wikis' do
 
     sign_in_with(non_wiki_owner.email, non_wiki_owner.password)
     visit wikis_path
-    expect(page).to_not have_content('My private wiki') 
+    expect(page).to_not have_content('My private wiki')
   end
 
   scenario 'As a collaborator' do
-    wiki_owner = FactoryGirl.create(:user, :confirmed2, :premium)
-    collaborator = FactoryGirl.create(:user, :confirmed2, :premium, email: 'colab@example.net')
+    wiki_owner = FactoryGirl.create(:user, :confirmed, :premium)
+    collaborator = FactoryGirl.create(:user, :confirmed, :premium, email: 'colab@example.net')
 
     sign_in_with(wiki_owner.email, wiki_owner.password)
     create_private_wiki('My Shiny Private Wiki', 'The best wiki ever.')

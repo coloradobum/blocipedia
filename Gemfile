@@ -41,12 +41,15 @@ gem 'spring',        group: :development
 gem 'slim-rails'
 gem 'devise'
 gem 'figaro'
+gem 'stripe'
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'pry'
   gem 'launchy'
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -56,6 +59,8 @@ end
 group :test do
   gem 'rake' #add this for travis-ci
   gem "capybara"
+  gem "stripe-ruby-mock" 
+  gem "thin"
 end
 
-gem "codeclimate-test-reporter", group: :test, require: nil
+#gem "codeclimate-test-reporter", group: :test, require: nil
