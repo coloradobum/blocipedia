@@ -5,9 +5,9 @@ require 'rails_helper'
 # So I can manage access to sensitive information
 
 feature 'Add private wikis' do
- 
+
   scenario 'Successfully' do
-    user = FactoryGirl.create(:user, :confirmed2, :premium)
+    user = FactoryGirl.create(:user, :confirmed, :premium)
 
     sign_in_with(user.email, user.password)
     create_private_wiki('My private wiki', 'not for your eyes.')
@@ -17,7 +17,7 @@ feature 'Add private wikis' do
   end
 
   scenario 'As a non-premium user' do
-    user = FactoryGirl.create(:user, :confirmed2)
+    user = FactoryGirl.create(:user, :confirmed)
 
     sign_in_with(user.email, user.password)
     visit wikis_path

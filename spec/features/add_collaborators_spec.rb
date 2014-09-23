@@ -7,8 +7,8 @@ require 'rails_helper'
 feature 'Add collaborators to private wikis' do
 
   scenario 'Successfully' do
-    wiki_owner = FactoryGirl.create(:user, :confirmed2, :premium)
-    collaborator = FactoryGirl.create(:user, :confirmed2, :premium, email: 'colab@example.net')
+    wiki_owner = FactoryGirl.create(:user, :confirmed, :premium)
+    collaborator = FactoryGirl.create(:user, :confirmed, :premium, email: 'colab@example.net')
 
     sign_in_with(wiki_owner.email, wiki_owner.password)
     create_private_wiki('My Shiny Private Wiki', 'The best wiki ever.')
@@ -23,8 +23,8 @@ feature 'Add collaborators to private wikis' do
   end
 
   scenario 'where collaborator is a non-premium user'  do
-    wiki_owner = FactoryGirl.create(:user, :confirmed2, :premium)
-    collaborator = FactoryGirl.create(:user,:confirmed2,  email: 'colab@example.net')
+    wiki_owner = FactoryGirl.create(:user, :confirmed, :premium)
+    collaborator = FactoryGirl.create(:user,:confirmed,  email: 'colab@example.net')
 
     sign_in_with(wiki_owner.email, wiki_owner.password)
     create_private_wiki('My Shiny Private Wiki', 'The best wiki ever.')
@@ -39,8 +39,8 @@ feature 'Add collaborators to private wikis' do
   end
 
   scenario 'where empty selection is present' do
-    wiki_owner = FactoryGirl.create(:user, :confirmed2, :premium)
-    collaborator = FactoryGirl.create(:user,:confirmed2,  email: 'colab@example.net')
+    wiki_owner = FactoryGirl.create(:user, :confirmed, :premium)
+    collaborator = FactoryGirl.create(:user,:confirmed,  email: 'colab@example.net')
 
     sign_in_with(wiki_owner.email, wiki_owner.password)
     create_private_wiki('My Shiny Private Wiki', 'The best wiki ever.')

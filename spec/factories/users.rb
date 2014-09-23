@@ -5,13 +5,7 @@ FactoryGirl.define do
     password_confirmation "joespassword"
 
     trait :confirmed do
-      after(:create) do |user|
-        user.confirm!
-      end
-    end
-
-    trait :confirmed2 do
-      confirmed
+      confirmed_at Time.now
     end
 
     trait :premium do
