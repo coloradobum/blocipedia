@@ -2,31 +2,29 @@ class WikisController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_action :set_wiki, only: [:show, :edit, :update, :destroy]
 
-  # GET /wikis
-  # GET /wikis.json
   def index
     @public_wikis = Wiki.public_wikis
     @private_wikis = Wiki.private_wikis.owned_wikis(get_current_user) if user_signed_in?
     @collaboration_wikis = Wiki.show_wiki_details(get_list_of_wikis_being_collaborated) if user_signed_in?
 
+  @number_of_wiki_collorations = is_wiki_collaborator? 8
+  # @wikis = policy_cope(Wiki)
+  @wikis = Wiki.all
+
   end
 
-  # GET /wikis/1
-  # GET /wikis/1.json
   def show
+    authorize @wiki
   end
 
-  # GET /wikis/new
   def new
     @wiki = Wiki.new
   end
 
-  # GET /wikis/1/edit
   def edit
+    authorize @wiki
   end
 
-  # POST /wikis
-  # POST /wikis.json
   def create
     @wiki = Wiki.new(wiki_params)
     @wiki.user_id = current_user.id
@@ -41,8 +39,6 @@ class WikisController < ApplicationController
     end
   end
 
-  # PATCH/PUT /wikis/1
-  # PATCH/PUT /wikis/1.json
   def update
     respond_to do |format|
       if @wiki.update(wiki_params)
@@ -53,10 +49,9 @@ class WikisController < ApplicationController
         format.json { render json: @wiki.errors, status: :unprocessable_entity }
       end
     end
+    authorize @wiki
   end
 
-  # DELETE /wikis/1
-  # DELETE /wikis/1.json
   def destroy
     @wiki.destroy
     respond_to do |format|
@@ -90,5 +85,11 @@ class WikisController < ApplicationController
       else
         current_user.collaborations.pluck(:wiki_id)
       end
+    end
+
+    def is_wiki_collaborator? (wiki_id)
+      wiki_list = []
+      current_user.collaborations.each { |wiki|  wiki_list << wiki.wiki_id } if user_signed_in?
+      wiki_list.include? wiki_id 
     end
 end

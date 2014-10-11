@@ -6,6 +6,7 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/webkit/matchers'
 require 'thin'
+require "pundit/rspec"
 require 'stripe_mock'
 StripeMock.spawn_server
 

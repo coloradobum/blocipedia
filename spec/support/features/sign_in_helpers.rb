@@ -7,4 +7,12 @@ module Features
     fill_in 'Password', with: password
     click_button 'Sign in'
   end
+
+  def sign_out
+    visit root_path
+    click_on 'Sign out'
+  end
 end
+
+
+
