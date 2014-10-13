@@ -43,6 +43,7 @@ gem 'devise'
 gem 'figaro'
 gem 'stripe'
 gem 'pundit'
+gem 'bootstrap-sass', '~> 3.1.1'
 
 group :development, :test do
   gem 'rspec-rails'

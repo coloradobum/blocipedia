@@ -3,22 +3,16 @@ h1 Public wikis
 table
   thead
     tr
-      th Title
-      th Body
-      th Owner
-      th
-      th
-      th
+      th Wiki Title
+      th Wiki Body
+      th Wiki Owner
 
   tbody
     - @public_wikis.each do |wiki|
       tr
-        td = wiki.title
+        td = link_to wiki.title, wiki
         td = wiki.body
         td = wiki.user_id
-        td = link_to 'Show', wiki
-        td = link_to 'Edit', edit_wiki_path(wiki)
-        td = link_to 'Destroy', wiki, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 br
@@ -30,19 +24,13 @@ br
         th Title
         th Body
         th Owner
-        th
-        th
-        th
 
     tbody
       - @private_wikis.each do |wiki| 
         tr
-          td = wiki.title
+          td = link_to wiki.title, wiki
           td = wiki.body
           td = wiki.user_id
-          td = link_to 'Show', wiki
-          td = link_to 'Edit', edit_wiki_path(wiki)
-          td = link_to 'Destroy', wiki, data: {:confirm => 'Are you sure?'}, :method => :delete
   br
   br
 
@@ -57,21 +45,12 @@ br
     tbody
       - @collaboration_wikis.each do |wiki_name|
         tr
-          td = wiki_name.title
+          td = link_to wiki_name.title, wiki_name
           td = wiki_name.body
           td = wiki_name.user_id
-          td = link_to 'Show', wiki_name
 <br/>
 <br/>
 
-= link_to 'New Wiki', new_wiki_path
+= link_to 'New Wiki', new_wiki_path if user_signed_in?
 br
-= link_to 'Upgrade to premium account', new_charge_path
-br
-You are a collaborator on x wikis
-br
-= @number_of_wiki_collorations 
-br
-/- policy_scope(@user.wikis).each do |wiki|
-/  = link_to wiki.title, post_path(post)
-= @wikis
+= link_to 'Upgrade to premium account', new_charge_path if user_signed_in?
